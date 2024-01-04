@@ -1,0 +1,21 @@
+name: Despliegue
+on:
+  push:
+    branches:
+      - main
+jobs:
+  saludo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Imprimir saludo
+        run: echo "Hola!!"
+  despliegue:
+    needs: saludo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Desplegar en servidor
+        run: |
+          cd /var/www/html
+          git pull https://github.com/EdwinG241993/SysTransport.git
